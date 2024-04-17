@@ -4,21 +4,24 @@ import viteLogo from "/vite.svg";
 import "./App.css";
 import axios from "axios";
 
+const base_url = import.meta.env.VITE_BASE_URL;
+
 function App() {
   const [count, setCount] = useState(0);
   const [stockSearchList, setstockSearchList] = useState([]);
 
-  // const headers = {
-  //   "Content-Type": "application/x-www-form-urlencoded",
-  //   Authorization: "Token c2f2aa3024fb7027f3d7ca69f586edb60761661f",
-  // };
+  const headers = {
+    "Content-Type": "application/x-www-form-urlencoded",
+    Authorization: "Token c2f2aa3024fb7027f3d7ca69f586edb60761661f",
+  };
 
   const fetchAPI = async () => {
-    const response = await axios.get("http://127.0.0.1:8080/api/stocks/aapl");
+    const response = await axios.get(`${base_url}/api/stocks/aapl`);
     setstockSearchList(response);
   };
 
-  console.log(typeof stockSearchList);
+  console.log(`test ${base_url}`);
+  console.log("testing");
   useEffect(() => {
     fetchAPI();
   }, []);
